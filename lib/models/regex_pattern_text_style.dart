@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 // typedef InlineAction = InlineSpan Function(String);
-typedef InlineAction = TextSpan Function(String);
+typedef InlineAction = TextSpan Function(String, Match);
 
 class RegexPatternTextStyle {
   final dynamic type;

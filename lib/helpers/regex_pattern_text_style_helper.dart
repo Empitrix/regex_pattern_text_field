@@ -7,7 +7,7 @@ class RegexPatternTextStyleHelper {
       // .map((type) => RegexPatternTextStyle(regexPattern: type.pattern, textStyle: type.style, type: type))
       .map((type) => RegexPatternTextStyle(
 					regexPattern: type.pattern,
-					action: (_) => TextSpan(text: _, style: type.style),
+					action: (_, __) => TextSpan(text: _, style: type.style),
 					type: type
 			)).toList();
 
