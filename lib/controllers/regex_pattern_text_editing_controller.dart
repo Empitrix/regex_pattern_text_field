@@ -103,7 +103,8 @@ class RegexPatternTextEditingController extends TextEditingController {
     try {
       var textToBeStyled = match.group(0) ?? "";
       var textPart = RegexPatternTextStyleHelper.findMatchingTextStyle(textToBeStyled, _textPartStyleList);
-      textSpanChildren.add(TextSpan(text: textToBeStyled, style: textPart?.textStyle));
+      // textSpanChildren.add(TextSpan(text: textToBeStyled, style: textPart?.textStyle));
+      textSpanChildren.add(textPart!.action(textToBeStyled));
     } catch (e) {
       throw Exception("Error on _addStyledTextOnMatch: Failed to add styled text for 'textToBeStyled'.");
     }
