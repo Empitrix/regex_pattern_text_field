@@ -104,8 +104,13 @@ class RegexPatternTextEditingController extends TextEditingController {
       var textToBeStyled = match.group(0) ?? "";
       var textPart = RegexPatternTextStyleHelper.findMatchingTextStyle(textToBeStyled, _textPartStyleList);
       // textSpanChildren.add(TextSpan(text: textToBeStyled, style: textPart?.textStyle));
-      textSpanChildren.add(textPart!.action(textToBeStyled, match));
+			if(textPart != null){
+      	textSpanChildren.add(textPart.action(textToBeStyled, match));
+			} else {
+      	textSpanChildren.add(TextSpan(text: textToBeStyled));
+			}
     } catch (e) {
+			debugPrint("_ERROR: $e");
       throw Exception("Error on _addStyledTextOnMatch: Failed to add styled text for 'textToBeStyled'.");
     }
     return "";
@@ -113,6 +118,7 @@ class RegexPatternTextEditingController extends TextEditingController {
 
   String _addTextOnNonMatch(List<InlineSpan> textSpanChildren, String textToBeStyled, TextStyle? style) {
     try {
+      // textSpanChildren.add(TextSpan(text: textToBeStyled, style: style));
       textSpanChildren.add(TextSpan(text: textToBeStyled, style: style));
     } catch (e) {
       throw Exception("The style of the text part '$textToBeStyled' is not defined in SocialTextFieldHelper");
